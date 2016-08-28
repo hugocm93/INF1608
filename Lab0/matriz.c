@@ -6,7 +6,7 @@ double** mat_cria( int m, int n )
 {
 	double** matriz = ( double** )malloc( m*sizeof( double* ) );
 	if( !matriz )
-	{	
+	{
 		printf( "Erro na alocação da matriz\n" );
 		exit( 1 );
 	}
@@ -14,9 +14,9 @@ double** mat_cria( int m, int n )
 	int i, j;
 	for( i = 0; i < m; i++ )
 	{
-		matriz[ i ] = ( double* )malloc( n*sizeof( double ) );	
+		matriz[ i ] = ( double* )malloc( n*sizeof( double ) );
 		if( !matriz[ i ] )
-		{	
+		{
 			printf( "Erro na alocação da matriz\n" );
 			exit( 2 );
 		}
@@ -47,7 +47,7 @@ void mat_libera( int m, double** A)
 		free( A[ i ] );
 		A[ i ] = NULL;
 	}
-	
+
 	free( A );
 }
 
@@ -58,10 +58,13 @@ void mat_transposta ( int m, int n, double** A, double** T )
 		printf( "Matrizes não existem\n" );
 		return;
 	}
+
+	mat_zeram( n, m, T );
+
 	int i, j;
-	for( i = 0; i < m; i++ )
+	for( i = 0; i < n; i++ )
 	{
-		for( j = 0; j < n; j++ )
+		for( j = 0; j < m; j++ )
 		{
 			T[ i ][ j ] = A[ j ][ i ];
 		}
@@ -76,11 +79,7 @@ void mat_multv (int m, int n, double** A, double* V, double* W )
 		return;
 	}
 
-	int w;
-	for( w = 0; w < n ; w++ )
-	{
-		W[ w ] = 0;
-	}
+	mat_zerav( n, W );
 
 	int i, j;
 	for( i = 0; i < m; i++ )
@@ -94,10 +93,28 @@ void mat_multv (int m, int n, double** A, double* V, double* W )
 
 void mat_multm ( int m, int n, int q, double** A, double** B, double** C )
 {
+	if( !A || !B || !C )
+	{
+		printf( "Dados não existem\n" );
+		return;
+	}
 
+	mat_zeram( m, q, C );
+
+	int i, j, k;
+	for( k = 0; k < q; k++ )
+	{
+		for( i = 0; i < m; i++ )
+		{
+			for( j = 0; j < n; j++ )
+			{
+				C[ i ][ k ] += A[ i ][ j ]*B[ j ][ k ];
+			}
+		}
+	}
 }
 
-void mat_imprime( int m, int n, double** A )
+void mat_imprime( char* title, int m, int n, double** A )
 {
 	if( !A )
 	{
@@ -105,15 +122,49 @@ void mat_imprime( int m, int n, double** A )
 		return;
 	}
 
-	printf( "\n---\n");
+	printf( "%s\n", title );
+	int i, j;
+	for( i = 0; i < m; i++ )
+	{
+		printf( " |");
+		for( j = 0; j < n; j++ )
+		{
+			printf( A[ i ][ j ] >= 0 ? " %.2lf " : "%.2lf " , A[ i ][ j ] );
+		}
+		printf( "|\n");
+	}
+	printf( "\n");
+}
+
+void mat_zeram( int m, int n, double** A )
+{
+	if( !A || !m || !n )
+	{
+		printf( "Dados não existem\n" );
+		return;
+	}
+
 	int i, j;
 	for( i = 0; i < m; i++ )
 	{
 		for( j = 0; j < n; j++ )
 		{
-			printf( "%lf ", A[ i ][ j ] );
+			A[ i ][ j ] = 0;
 		}
-		printf( "\n");
 	}
-	printf( "---\n");
+}
+
+void mat_zerav( int m, double* V )
+{
+	if( !V || !m )
+	{
+		printf( "Dados não existem\n" );
+		return;
+	}
+
+	int v;
+	for( v = 0; v < m ; v++ )
+	{
+		V[ v ] = 0;
+	}
 }
