@@ -24,5 +24,5 @@ double v( double m )
 
 double g( double x )
 {
-  return  ( 2.5 / x ) + 1.8;
+  return ( 2.5 / x ) + 1.8;
 }
