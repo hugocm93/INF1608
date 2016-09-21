@@ -1,6 +1,8 @@
 #ifndef MATRIZ
 #define MATRIZ
 
+typedef double** Matriz;
+
 double** mat_cria( int m, int n );
 
 void mat_libera( int m, double** A);
@@ -16,5 +18,7 @@ void mat_imprime( char* title, int m, int n, double** A );
 void mat_zeram( int m, int n, double** A );
 
 void mat_zerav( int m, double* V );
+
+double mat_det3( double** M );
 
 #endif
