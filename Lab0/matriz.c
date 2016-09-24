@@ -45,7 +45,6 @@ void mat_libera( int m, double** A)
 	for( i = 0; i < m; i++ )
 	{
 		free( A[ i ] );
-		A[ i ] = NULL;
 	}
 
 	free( A );
@@ -58,8 +57,6 @@ void mat_transposta ( int m, int n, double** A, double** T )
 		printf( "Matrizes não existem\n" );
 		return;
 	}
-
-	mat_zeram( n, m, T );
 
 	int i, j;
 	for( i = 0; i < n; i++ )
