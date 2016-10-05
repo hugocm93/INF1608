@@ -39,7 +39,7 @@ void gauss (int n, double** A, double* b, double* x)
       b[i] -= b[j]*f;
     }
     //end substituição
-  }
+    }
 
   //Resolução
   for(i = n-1; i >= 0; i--)
