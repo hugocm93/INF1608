@@ -101,10 +101,9 @@ double lagrange (int n, double* px, double* py, double x)
 {
   int i, j;
   double Li, y = 0;
-  for( i = 0; i < n; i++)
+  for(i = 0; i < n; i++)
   {
-    Li = 1;
-    for( j = 0; j < n; j++)
+    for(Li = 1, j = 0; j < n; j++)
     {
       if(j != i) Li *= (x - px[j]) / (px[i] - px[j]);
     }
