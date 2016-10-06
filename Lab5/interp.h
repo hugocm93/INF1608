@@ -5,7 +5,7 @@
 
 double** fatoracao (int n, double** A);
 
-double* substituicao (int n, double** A, double** P, double* b);
+double* substituicao (int n, double** A, double** P, double* B);
 
 double* interpola (int n, double* px, double* py);
 
