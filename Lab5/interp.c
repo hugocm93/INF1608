@@ -87,13 +87,35 @@ double* substituicao (int n, double** A, double** P, double* B)
 
 double* interpola (int n, double* px, double* py)
 {
-  return NULL;
+  Matriz M = mat_cria(n, n);
+
+  int i, j;
+  for(i = 0; i < n; i++)
+  {
+    for(j = 0; j < n; j++)
+    {
+      M[i][j] = pow(px[i], j);
+    }
+  }
+
+  Matriz P = fatoracao(n, M);
+  double* c = substituicao(n, M, P, py);
+
+  mat_libera(n, M);
+  mat_libera(n, P);
+  return c;
 }
 
 
 double avalia (int n, double* c, double x)
 {
-  return 0;
+  int i = 0;
+  double  y = 0;
+  for( ; i < n; i++)
+  {
+    y += c[i]*pow(x, i);
+  }
+  return y;
 }
 
 
