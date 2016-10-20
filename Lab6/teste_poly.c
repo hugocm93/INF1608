@@ -22,7 +22,7 @@ int main(void)
   double* B = NewtonCompute(s);
 
   double x;
-  for(x = -2*M_PI; x < 2*M_PI; x += 0.1)
+  for(x = -2*M_PI; x < 2*M_PI; x += 0.5)
   {
     double aprox = NewtonEval(s, B, x);
     double cosx = cos(x);

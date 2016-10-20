@@ -1,4 +1,5 @@
 #include <math.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 #include "poly.h"
@@ -33,7 +34,7 @@ Sample* Chebyshev(int n, double a, double b, double (*f) (double x))
   int i, B;
   for(i = 0, B = 1; i < n; i++, B+=2)
   {
-    sample->x[i] = ((b-a)/2)*cos((B*M_PI)/(2*n));
+    sample->x[i] = ((b-a)/2)*cos((B*M_PI)/(2*n)) + (b+a)/2;
     sample->y[i] = f(sample->x[i]);
   }
 
@@ -48,7 +49,6 @@ double* NewtonCompute(Sample* s)
   int i;
   for(i = 0; i < s->n; i++)
   {
-    //TODO: Usar iteração ao invés de recursão
     b[i] = DDN(0, i, s);
   }
 
@@ -71,8 +71,6 @@ double DDN(int i, int j, Sample* s)
 
 double NewtonEval(Sample* s, double* b, double x)
 {
-  //TODO: ajustar intervalo
-
   int m = 0, n = 0;
   if(x > M_PI/2)
   {
@@ -96,12 +94,12 @@ double NewtonEval(Sample* s, double* b, double x)
 
   for(i = 0; i < s->n; i++)
   {
-    p += b[i]*produtorio(s, x, i);
+    p += (b[i]*produtorio(s, x, i));
   }
 
   if( m == 0)
   {
-    return n%2 == 0 ? p : -p;
+    return n%2 == 0 ?  p : -p;
   }
   else
   {
@@ -117,7 +115,7 @@ double produtorio(Sample* s, double x, int i)
 
   for(j = 0; j < i; j++)
   {
-    acum *= x - s->x[j];
+    acum *= (x - s->x[j]);
   }
 
   return acum;
