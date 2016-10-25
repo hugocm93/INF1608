@@ -70,7 +70,7 @@ void mat_multv (int m, int n, double** A, double* V, double* W )
 		return;
 	}
 
-	mat_zerav( n, W );
+	mat_zerav( m, W );
 
 	int i, j;
 	for( i = 0; i < m; i++ )

@@ -7,6 +7,9 @@
 /*Função auxiliar para testes*/
 void teste(char c, int m, int n, double** A, double* b);
 
+/*Função de concentração*/
+double conc(double a, double b, double t);
+
 int main(void)
 {
   printf("******  Questão 3\n\n");
@@ -115,9 +118,33 @@ int main(void)
   vec_imprime("b3", b3, 8);
 
   double* res3 = mmq(8, 2, m3, b3);
+  double erro3 = norma2(8, 2, m3, b3, res3);
   double a = exp(res3[0]);
   double b = res3[1];
-  printf("a: %.4g b:%.4g\n", a, b);
+  printf("a: %.4g b:%.4g erro: %.4g \n", a, b, erro3);
+
+  FILE* file = fopen("sheet.csv", "w");
+  fprintf(file, "x;y; \n");
+
+  double ti;
+  int i = 1;
+  for(ti = 0; ti <= 16 ; ti += 0.1)
+  {
+    double ci = conc(a, b, ti);
+    //printf("(%.5g, %.5g)\n", ti, ci);
+
+    fprintf(file, "%.5g;%.5g", ti, ci);
+    if(fabs(ti - (double)i) < 0.001 && i <= 8)
+    {
+      fprintf(file,";%.5g\n", c[i-1]);
+      i++;
+    }
+    else
+    {
+      fprintf(file,";\n");
+    }
+  }
+  fclose(file);
 
   free(res3);
   mat_libera(8, m3);
@@ -136,4 +163,9 @@ void teste(char c, int m, int n, double** A, double* b)
   printf("Erro %c: %.16g\n\n", c, erro);
 
   free(res);
+}
+
+double conc(double a, double b, double t)
+{
+  return a*t*exp(b*t);
 }
