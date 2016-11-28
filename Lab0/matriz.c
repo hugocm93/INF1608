@@ -11,7 +11,7 @@ double** mat_cria( int m, int n )
 		exit( 1 );
 	}
 
-	int i, j;
+	int i;
 	for( i = 0; i < m; i++ )
 	{
 		matriz[ i ] = ( double* )malloc( n*sizeof( double ) );
