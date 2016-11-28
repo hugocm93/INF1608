@@ -1,0 +1,32 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+GAUSS_SEIDEL	met_iter.c.c	/^    GAUSS_SEIDEL,$/;"	e	enum:metodo	file:
+GaussSeidel	met_iter.c.c	/^int GaussSeidel(int n, double** A, double*b, double*x, double tol)$/;"	f
+JACOBI	met_iter.c.c	/^    JACOBI,$/;"	e	enum:metodo	file:
+Jacobi	met_iter.c.c	/^int Jacobi(int n, double** A, double* b, double* x, double tol )$/;"	f
+MATRIZ	matriz.h	2;"	d
+Matriz	matriz.h	/^typedef double** Matriz;$/;"	t
+Metodo	met_iter.c.c	/^} Metodo;$/;"	t	typeref:enum:metodo	file:
+N_METODOS	met_iter.c.c	/^    N_METODOS$/;"	e	enum:metodo	file:
+SOR	met_iter.c.c	/^    SOR,$/;"	e	enum:metodo	file:
+SOR	met_iter.c.c	/^int SOR(int n, double** A, double* b, double* x, double tol, double w)$/;"	f
+TOL	met_iter.c.c	/^double TOL = 0.5*pow(10,-7);$/;"	v
+W	met_iter.c.c	/^double W = 1.1;$/;"	v
+main	met_iter.c.c	/^int main(void)$/;"	f
+mat_cria	matriz.c	/^double** mat_cria( int m, int n )$/;"	f
+mat_det3	matriz.c	/^double mat_det3( double** M )$/;"	f
+mat_imprime	matriz.c	/^void mat_imprime( char* title, int m, int n, double** A )$/;"	f
+mat_libera	matriz.c	/^void mat_libera( int m, double** A)$/;"	f
+mat_multm	matriz.c	/^void mat_multm ( int m, int n, int q, double** A, double** B, double** C )$/;"	f
+mat_multv	matriz.c	/^void mat_multv (int m, int n, double** A, double* V, double* W )$/;"	f
+mat_preenche_ID	matriz.c	/^void mat_preenche_ID( int m, double** A)$/;"	f
+mat_transposta	matriz.c	/^void mat_transposta ( int m, int n, double** A, double** T )$/;"	f
+mat_zeram	matriz.c	/^void mat_zeram( int m, int n, double** A )$/;"	f
+mat_zerav	matriz.c	/^void mat_zerav( int m, double* V )$/;"	f
+metodo	met_iter.c.c	/^typedef enum metodo$/;"	g	file:
+teste	met_iter.c.c	/^void teste(int n, double** A, double*b)$/;"	f
+vec_imprime	matriz.c	/^void vec_imprime(char* title, double* v, int n)$/;"	f
