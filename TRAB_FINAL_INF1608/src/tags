@@ -1,0 +1,37 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+CT	CT.cpp	/^CT::CT( std::string path, int* indexes )$/;"	f	class:CT
+CT	CT.h	/^class CT$/;"	c
+CT_H	CT.h	2;"	d
+INTEGRAL_H	Integral.h	2;"	d
+Integral	Integral.cpp	/^Integral::Integral()$/;"	f	class:Integral
+Integral	Integral.h	/^class Integral$/;"	c
+MAX_NUMBER_SIZE	main.cpp	10;"	d	file:
+PGM	PGM.cpp	/^PGM::PGM( std::string path, std::string name, int width, int height, int maxValue )$/;"	f	class:PGM
+PGM	PGM.h	/^class PGM$/;"	c
+PGM_H	PGM.h	2;"	d
+VOLUMEVISU_H	VolumeVisualizationScene.h	2;"	d
+VolumeVisualizationScene	VolumeVisualizationScene.cpp	/^VolumeVisualizationScene::VolumeVisualizationScene( CT* ct, int sceneWidth, int sceneHeight ) :$/;"	f	class:VolumeVisualizationScene
+VolumeVisualizationScene	VolumeVisualizationScene.h	/^class VolumeVisualizationScene$/;"	c
+_ct	VolumeVisualizationScene.h	/^    CT* _ct;$/;"	m	class:VolumeVisualizationScene
+_file	PGM.h	/^    std::ofstream _file;$/;"	m	class:PGM
+_indexes	CT.h	/^    int _indexes[ 3 ];$/;"	m	class:CT
+_sceneHeight	VolumeVisualizationScene.h	/^    int _sceneHeight;$/;"	m	class:VolumeVisualizationScene
+_sceneWidth	VolumeVisualizationScene.h	/^    int _sceneWidth;$/;"	m	class:VolumeVisualizationScene
+_values	CT.h	/^    unsigned char* _values;$/;"	m	class:CT
+add	PGM.cpp	/^void PGM::add( int value )$/;"	f	class:PGM
+exportPGM	PGM.cpp	/^void PGM::exportPGM()$/;"	f	class:PGM
+getValue	CT.cpp	/^unsigned char CT::getValue( int i, int j, int k )$/;"	f	class:CT
+main	main.cpp	/^int main( int argc, char** argv )$/;"	f
+newLine	PGM.cpp	/^void PGM::newLine()$/;"	f	class:PGM
+renderToFile	VolumeVisualizationScene.cpp	/^void VolumeVisualizationScene::renderToFile( std::string pathToFile )$/;"	f	class:VolumeVisualizationScene
+sliceToPGM	CT.cpp	/^void CT::sliceToPGM( std::string path, std::string name, int k )$/;"	f	class:CT
+usage	main.cpp	/^void usage( std::string programName )$/;"	f
+~CT	CT.cpp	/^CT::~CT()$/;"	f	class:CT
+~Integral	Integral.cpp	/^Integral::~Integral()$/;"	f	class:Integral
+~PGM	PGM.cpp	/^PGM::~PGM()$/;"	f	class:PGM
+~VolumeVisualizationScene	VolumeVisualizationScene.cpp	/^VolumeVisualizationScene::~VolumeVisualizationScene()$/;"	f	class:VolumeVisualizationScene
