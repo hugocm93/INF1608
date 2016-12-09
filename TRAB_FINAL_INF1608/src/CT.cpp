@@ -36,6 +36,13 @@ unsigned char CT::getValue( int i, int j, int k )
 }
 
 
+double CT::getValue( double i, double j, double k )
+{
+    //TODO: fazer interpolacao
+    return ( double ) _values[ ( int )k * _indexes[ 0 ] * _indexes[ 1 ] + ( int )j * _indexes[ 0 ] + ( int )i ];
+}
+
+
 void CT::sliceToPGM( std::string path, std::string name, int k )
 {
     int width = _indexes[ 0 ];

@@ -12,6 +12,8 @@ public:
     ~CT();
 
     unsigned char getValue( int i, int j, int k );
+    
+    double getValue( double i, double j, double k );
 
     void sliceToPGM( std::string path, std::string name, int k );
 

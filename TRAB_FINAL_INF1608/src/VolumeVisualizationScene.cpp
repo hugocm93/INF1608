@@ -25,19 +25,19 @@ void VolumeVisualizationScene::renderToFile( std::string pathToFile, std::string
 {
     std::cout << "Rendering to file " << pathToFile << fileName << ".pgm" << std::endl;
 
-    std::vector< std::vector< double > > matrix( _sceneWidth );
+    std::vector< std::vector< double > > matrix( _sceneHeight );
     for( int i = 0; i < _sceneHeight; i++ )
     {
-        matrix[i].resize( _sceneHeight );
+        matrix[i].resize( _sceneWidth );
     }
-   
+  
     double L = _ct->getYLength();	
-    for( int j = 0; j < _sceneHeight; j++ )
+    for( int i = 0; i < _sceneHeight; i++ )
     {
-        for( int i = 0; i < _sceneWidth; i++ )
+	for( int j = 0; j < _sceneWidth; j++ )
         {
-	    Ray ray1( 2*i, 0, j );
-	    Ray ray2( 2*i + 1, 0, j );
+	    Ray ray1( 2*j, 0, i );
+	    Ray ray2( 2*j + 1, 0, i );
 
 	    double first = calcIntegral( &ray1, L );	
 	    double second = calcIntegral( &ray2, L );	
@@ -45,11 +45,10 @@ void VolumeVisualizationScene::renderToFile( std::string pathToFile, std::string
         }
     }
 
-
     int maxValue; 
-    for( int j = 0; j < _sceneHeight; j++ )
+    for( int i = 0; i < _sceneHeight; i++ )
     {
-        for( int i = 0; i < _sceneWidth; i++ )
+	for( int j = 0; j < _sceneWidth; j++ )
         {
 		if( matrix[i][j] > maxValue )
 		{
@@ -60,9 +59,9 @@ void VolumeVisualizationScene::renderToFile( std::string pathToFile, std::string
 
     PGM pgm( pathToFile, fileName, _sceneWidth, _sceneHeight, maxValue );
 
-    for( int j = 0; j < _sceneHeight; j++ )
+    for( int i = 0; i < _sceneHeight; i++ )
     {
-        for( int i = 0; i < _sceneWidth; i++ )
+	for( int j = 0; j < _sceneWidth; j++ )
         {
             pgm.add( matrix[i][j] );
         }
@@ -88,7 +87,7 @@ double VolumeVisualizationScene::calcIntegral( Ray* ray, double L )
 {
       std::function< double ( double ) > function = [ & ]( double value ) -> double
       {
-	  return talDt( _ct->getValue( ray->_x, value, ray->_z )/255 );
+	  return talDt( _ct->getValue( ( double )ray->_x, ( double )value, ( double )ray->_z )/255 );
       };
 
       double expoent = Integral::simpson( function, 0, L, 1 /*H*/ );
