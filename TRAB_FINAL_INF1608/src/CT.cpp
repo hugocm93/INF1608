@@ -38,8 +38,13 @@ unsigned char CT::getValue( int i, int j, int k )
 
 double CT::getValue( double i, double j, double k )
 {
-    //TODO: fazer interpolacao
-    return ( double ) _values[ ( int )k * _indexes[ 0 ] * _indexes[ 1 ] + ( int )j * _indexes[ 0 ] + ( int )i ];
+    int previous = ( int )j;
+    double percentage = j - previous;
+
+    double first = ( double ) _values[ ( int )k * _indexes[ 0 ] * _indexes[ 1 ] + previous * _indexes[ 0 ] + ( int )i ]*( 1 - percentage );
+    double second = ( double ) _values[ ( int )k * _indexes[ 0 ] * _indexes[ 1 ] + ( previous + 1 ) * _indexes[ 0 ] + ( int )i ]*( percentage );
+
+    return first + second;
 }
 
 

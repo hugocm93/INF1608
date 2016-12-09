@@ -1,17 +1,20 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <cassert>
 
 #include "VolumeVisualizationScene.h"
 #include "PGM.h"
 #include "Integral.h"
 #include "Ray.h"
 
-VolumeVisualizationScene::VolumeVisualizationScene( CT* ct, int sceneWidth, int sceneHeight ) :
+VolumeVisualizationScene::VolumeVisualizationScene( CT* ct, int sceneWidth, int sceneHeight, double H ) :
     _ct( ct ),
     _sceneWidth( sceneWidth ),
-    _sceneHeight( sceneHeight )
+    _sceneHeight( sceneHeight ), 
+    _H( H )
 {
+    assert( _H );
 }
 
 
@@ -25,7 +28,7 @@ void VolumeVisualizationScene::renderToFile( std::string pathToFile, std::string
 {
     std::cout << "Rendering to file " << pathToFile << fileName << ".pgm" << std::endl;
 
-    std::vector< std::vector< double > > matrix( _sceneHeight );
+    std::vector< std::vector< unsigned char > > matrix( _sceneHeight );
     for( int i = 0; i < _sceneHeight; i++ )
     {
         matrix[i].resize( _sceneWidth );
@@ -41,11 +44,11 @@ void VolumeVisualizationScene::renderToFile( std::string pathToFile, std::string
 
 	    double first = calcIntegral( &ray1, L );	
 	    double second = calcIntegral( &ray2, L );	
-	    matrix[i][j] = 255*( first + second )/2;
+	    matrix[i][j] = ( unsigned char )255*( first + second )/2;
         }
     }
 
-    int maxValue; 
+    unsigned char maxValue; 
     for( int i = 0; i < _sceneHeight; i++ )
     {
 	for( int j = 0; j < _sceneWidth; j++ )
@@ -90,7 +93,7 @@ double VolumeVisualizationScene::calcIntegral( Ray* ray, double L )
 	  return talDt( _ct->getValue( ( double )ray->_x, ( double )value, ( double )ray->_z )/255 );
       };
 
-      double expoent = Integral::simpson( function, 0, L, 1 /*H*/ );
+      double expoent = Integral::simpson( function, 0, L, _H );
 
-      return exp(-expoent)*Integral::simpson( function, 0, L, 1 /*H*/ ); 
+      return exp(-expoent)*Integral::simpson( function, 0, L, _H ); 
 }

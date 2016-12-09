@@ -9,7 +9,7 @@ class VolumeVisualizationScene
 {
 public:
 
-    VolumeVisualizationScene( CT* ct, int sceneWidth, int sceneHeight );
+    VolumeVisualizationScene( CT* ct, int sceneWidth, int sceneHeight, double H );
 
     ~VolumeVisualizationScene();
 
@@ -23,5 +23,6 @@ private:
     CT* _ct;
     int _sceneWidth;
     int _sceneHeight;
+    double _H;
 };
 #endif
