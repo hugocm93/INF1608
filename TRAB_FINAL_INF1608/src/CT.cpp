@@ -68,6 +68,12 @@ void CT::sliceToPGM( std::string path, std::string name, int k )
 }
 
 
+double CT::getYLength()
+{
+    return _indexes[ 1 ];
+}
+
+
 CT::~CT()
 {
     delete[] _values;

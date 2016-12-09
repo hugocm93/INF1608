@@ -15,6 +15,8 @@ public:
 
     void sliceToPGM( std::string path, std::string name, int k );
 
+    double getYLength();
+
 private:
 
     unsigned char* _values;

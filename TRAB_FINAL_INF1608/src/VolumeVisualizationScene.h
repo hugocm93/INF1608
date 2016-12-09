@@ -3,6 +3,8 @@
 
 #include "CT.h"
 
+class Ray;
+
 class VolumeVisualizationScene
 {
 public:
@@ -14,6 +16,9 @@ public:
     void renderToFile( std::string pathToFile, std::string fileName );
 
 private:
+
+    double talDt( double v );
+    double calcIntegral( Ray* ray, double L );
 
     CT* _ct;
     int _sceneWidth;
