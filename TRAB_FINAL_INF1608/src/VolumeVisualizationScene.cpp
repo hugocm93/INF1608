@@ -88,12 +88,15 @@ double VolumeVisualizationScene::talDt( double v )
 
 double VolumeVisualizationScene::calcIntegral( Ray* ray, double L )
 {
-      std::function< double ( double ) > function = [ & ]( double value ) -> double
+      std::function< double ( double ) > innerFunc = [ & ]( double value ) -> double
       {
-	  return talDt( _ct->getValue( ( double )ray->_x, ( double )value, ( double )ray->_z )/255 );
+          return talDt( _ct->getValue( ( double )ray->_x, ( double )value, ( double )ray->_z )/255 );
+      };
+    
+      std::function< double ( double ) > outerFunc = [ & ]( double value ) -> double
+      {
+	  return talDt( _ct->getValue( ( double )ray->_x, ( double )value, ( double )ray->_z )/255 )*exp( -Integral::simpson( innerFunc, 0, value, _H ) );
       };
 
-      double expoent = Integral::simpson( function, 0, L, _H );
-
-      return exp(-expoent)*Integral::simpson( function, 0, L, _H ); 
+      return Integral::simpson( outerFunc, 0, L, _H );
 }

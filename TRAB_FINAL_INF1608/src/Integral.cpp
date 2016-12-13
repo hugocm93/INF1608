@@ -7,7 +7,12 @@ double Integral::simpson( std::function< double ( double ) >& function, double a
     double sum = 0;
     double s1 = 0, s2 = 0;
 
-    assert( b > h );
+    if( b == 0 )
+    {
+        return 0;
+    }
+
+//    assert( b > h );
     assert( b > a );
 
     int i, n = ( b - a)/h;
